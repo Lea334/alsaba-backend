@@ -8,9 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class BackendApplicationTests {
 
-	@Autowired
-	PaysRepository paysRepository ;
-
 	@Test
 	void contextLoads() {
 
