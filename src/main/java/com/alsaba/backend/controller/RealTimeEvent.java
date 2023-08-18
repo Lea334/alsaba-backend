@@ -68,4 +68,10 @@ public class RealTimeEvent {
 
         return  emitter ;
     }
+
+    public  static SseEmitter unSubscribe(String UserID){
+        SseEmitter emiiterRemoved = SubscribeController.emmittersSubscribed.remove(UserID) ;
+        emiiterRemoved.complete();
+        return emiiterRemoved ;
+    }
 }
