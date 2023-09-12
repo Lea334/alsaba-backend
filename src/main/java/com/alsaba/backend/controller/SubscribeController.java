@@ -12,7 +12,7 @@ import java.util.Map;
 
 
 @RestController()
-@CrossOrigin
+@CrossOrigin(origins = "*" )
 public class SubscribeController {
 
     static Map<String , SseEmitter> emmittersSubscribed = new HashMap<>();

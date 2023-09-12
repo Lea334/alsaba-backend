@@ -33,7 +33,7 @@ public class ResponsableServiceImpl implements ResponsableService{
             responsableToUpdate.setPrenom(responsable.getPrenom());
             responsableToUpdate.setEmail(responsable.getEmail());
             responsableToUpdate.setTelephone(responsable.getTelephone());
-            responsableToUpdate.setAdress(responsable.getAdress());
+            responsableToUpdate.setAdresse(responsable.getAdresse());
             responsableToUpdate.setDocuments(responsable.getDocuments());
 
 

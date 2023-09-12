@@ -2,22 +2,18 @@ package com.alsaba.backend.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@AllArgsConstructor
-@Data
 @Document
-public class Responsable {
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class Ville {
     @Id
-    private String id;
-    private String nom;
-    private String prenom;
-    private String email;
-    private String telephone;
-    private String adresse;
-    private String documents;
-
-
-
+    private String id ;
+    private String nom_ville ;
+    private boolean est_activer ;
+    private boolean est_suspendue ;
 }

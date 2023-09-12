@@ -6,17 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
-import java.time.LocalTime;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 
-@CrossOrigin(origins = "http://localhost:5173" )
+@CrossOrigin(origins = "*" )
 @RestController()
 public class PaysController {
     @Autowired
@@ -34,6 +29,7 @@ public class PaysController {
 
     @GetMapping("/pays")
     public ResponseEntity<List<Pays>> getAllPays() {
+        System.out.println("hello");
         return ResponseEntity.ok().body(paysService.getAll());
     }
 
