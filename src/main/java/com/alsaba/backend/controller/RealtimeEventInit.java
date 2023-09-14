@@ -1,29 +1,10 @@
 package com.alsaba.backend.controller;
 
-
-import com.alsaba.backend.model.Pays;
-
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.io.IOException;
 
-import java.util.Map;
-
-public class RealTimeEvent {
-    public  static  void dispatcher(Pays newPays){
-        for(Map.Entry<String, SseEmitter> entry : SubscribeController.emmittersSubscribed.entrySet()){
-            try {
-                SseEmitter.SseEventBuilder event = SseEmitter.event()
-                        .data(newPays)
-                        .name("ADDED-COUNTRY");
-                entry.getValue().send(event);
-            } catch (Exception ex) {
-                System.out.println("Error sending update to emitter: " + ex);
-                entry.getValue().completeWithError(ex);
-            }
-        }
-    }
-
+public class RealtimeEventInit {
     public static SseEmitter init(String UserID){
         SseEmitter emitter = new SseEmitter(Long.MAX_VALUE);
         try {

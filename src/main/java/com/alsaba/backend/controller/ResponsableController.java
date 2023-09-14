@@ -1,8 +1,7 @@
 package com.alsaba.backend.controller;
 
-import com.alsaba.backend.model.Pays;
 import com.alsaba.backend.model.Responsable;
-import com.alsaba.backend.service.ResponsableService;
+import com.alsaba.backend.service.interfaces.ResponsableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

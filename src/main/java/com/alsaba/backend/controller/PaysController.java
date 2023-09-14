@@ -1,7 +1,8 @@
 package com.alsaba.backend.controller;
 
 import com.alsaba.backend.model.Pays;
-import com.alsaba.backend.service.PaysService;
+import com.alsaba.backend.requestsMappeurs.PaysRequestType;
+import com.alsaba.backend.service.interfaces.PaysService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,8 +12,8 @@ import java.util.List;
 import java.util.Optional;
 
 
-@CrossOrigin(origins = "*" )
 @RestController()
+@CrossOrigin(origins = "*" )
 public class PaysController {
     @Autowired
     private PaysService paysService;
@@ -23,7 +24,7 @@ public class PaysController {
     {
         Pays newPays = this.paysService.create(pays);
         System.out.println("list of subscriber : "+SubscribeController.emmittersSubscribed);
-        RealTimeEvent.dispatcher(newPays);
+        PaysRealTimeEvent.dispatcherNewAdd(newPays);
         return ResponseEntity.ok().body(newPays);
     }
 
@@ -41,14 +42,27 @@ public class PaysController {
 
     @PutMapping("/pays")
     public  ResponseEntity<Pays> updatePays(@RequestBody Pays pays){
-            System.out.println(pays);
-        return ResponseEntity.ok().body(this.paysService.update(pays));
+        Pays updatedPays = this.paysService.update(pays);
+        System.out.println("list of subscriber : "+SubscribeController.emmittersSubscribed);
+        PaysRealTimeEvent.dispatcherUpdate(updatedPays);
+        return ResponseEntity.ok().body(updatedPays);
     }
 
     @DeleteMapping("/pays/{id}")
     public HttpStatus deletePays(@PathVariable String id)
     {
        this.paysService.deleteById(id);
+        System.out.println("list of subscriber : "+SubscribeController.emmittersSubscribed);
+        PaysRealTimeEvent.dispatcherDelete(id);
+       return HttpStatus.OK;
+    }
+    @PostMapping("/pays/deleteMany")
+    public HttpStatus deletePays(@RequestBody PaysRequestType data)
+    {
+        System.out.println("ids here : "+data.getIds());
+       this.paysService.deleteByIdS(data.getIds());
+        System.out.println("list of subscriber : "+SubscribeController.emmittersSubscribed);
+        PaysRealTimeEvent.dispatcherDeleteMany(data.getIds());
        return HttpStatus.OK;
     }
 }

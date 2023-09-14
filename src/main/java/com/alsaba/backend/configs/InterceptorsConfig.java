@@ -20,7 +20,7 @@ public class InterceptorsConfig extends WebMvcConfigurationSupport {
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
         super.addInterceptors(registry);
-        registry.addInterceptor(postPays).addPathPatterns("/pays/**");
+        registry.addInterceptor(postPays);
         //registry.addInterceptor(corsOriginInterceptor);
 
     }

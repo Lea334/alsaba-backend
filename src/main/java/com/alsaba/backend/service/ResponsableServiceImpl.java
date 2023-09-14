@@ -2,6 +2,7 @@ package com.alsaba.backend.service;
 
 import com.alsaba.backend.model.Responsable;
 import com.alsaba.backend.repository.ResponsableRepository;
+import com.alsaba.backend.service.interfaces.ResponsableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ResponsableServiceImpl implements ResponsableService{
+public class ResponsableServiceImpl implements ResponsableService {
 
     @Autowired
     ResponsableRepository responsableRepository;

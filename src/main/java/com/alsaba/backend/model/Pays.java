@@ -12,6 +12,7 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -32,10 +33,11 @@ public class Pays{
     private boolean est_activer ;
     @JsonIgnore
     private boolean est_suspendue ;
-
     @JsonIgnore
     @DocumentReference
     private FraisOperation frais_pays;
+    @DocumentReference(lazy = true)
+    private List<Ville> villes ;
 
     public Pays(String nom , String code, String designation ,  String devise , String capitale , LocalDateTime dateCreation_pays , LocalDateTime dateModification_pays ){
         this.nom_pays = nom;

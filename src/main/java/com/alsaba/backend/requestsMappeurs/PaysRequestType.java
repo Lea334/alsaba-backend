@@ -2,19 +2,17 @@ package com.alsaba.backend.requestsMappeurs;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Setter
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class PaysRequestType {
-    private String countryName;
-    private String countryCode;
-    private String countryDenomination;
-    private String countryDevise ;
-    private String countryCapital;
-    private Date countryModificationDate ;
-    private Date countryCreationDate ;
+    private List<String> ids;
+
 }

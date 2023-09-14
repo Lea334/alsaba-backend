@@ -2,17 +2,19 @@ package com.alsaba.backend.service;
 
 import com.alsaba.backend.model.Pays;
 import com.alsaba.backend.repository.PaysRepository;
+import com.alsaba.backend.service.interfaces.PaysService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 @Service
-public class PaysServiceImpl implements PaysService{
+public class PaysServiceImpl implements PaysService {
     @Autowired
     private PaysRepository paysRepository;
 
@@ -34,14 +36,13 @@ public class PaysServiceImpl implements PaysService{
         if(foundedPays.isPresent())
         {
             Pays paysToUpdate = foundedPays.get();
-
             paysToUpdate.setId(pays.getId());
             paysToUpdate.setNom_pays(pays.getNom_pays());
             paysToUpdate.setCode_pays(pays.getCode_pays());
             paysToUpdate.setDevise_pays(pays.getDevise_pays());
             paysToUpdate.setCapitale_pays(pays.getCapitale_pays());
-            paysToUpdate.setDateModification_pays(pays.getDateModification_pays());
-            paysToUpdate.setDateCreation_pays(pays.getDateCreation_pays());
+            paysToUpdate.setDateModification_pays(LocalDateTime.now());
+            //paysToUpdate.setDateCreation_pays(pays.getDateCreation_pays());
 
             return  paysRepository.save(paysToUpdate);
 
@@ -58,10 +59,15 @@ public class PaysServiceImpl implements PaysService{
     {
         paysRepository.deleteById(id);
     }
+    @Override
+    public void deleteByIdS(List<String> ids){
+        ids.forEach((id)->{
+            paysRepository.deleteById(id);
+        });
+    }
 
     @Override
     public List<Pays> getAll() {
-        System.out.println("DATA : "+ paysRepository.findAll().get(0).getCapitale_pays());
         return paysRepository.findAll();
     }
 

@@ -1,4 +1,4 @@
-package com.alsaba.backend.service;
+package com.alsaba.backend.service.interfaces;
 
 import com.alsaba.backend.model.Responsable;
 
